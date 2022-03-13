@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="/static/styles.css" rel="stylesheet">
+        <script src="/static/script.js"></script>
+        <title>Students Scores</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Students Scores</h1>
+        </div>
+        <div class="container">
+            <div class="section">
+
+                <h2>Add student scores</h2>
+                <!-- TODO: Create a form for users to submit a quizz_1, a midterm_test, quizz_2, and a exam -->
+                <form action="/" method="post" name="Form">
+                    <label for="student">Choose student ID</label>
+                    <select name="ID">
+                        <option value="1256">1256</option>
+                        <option value="9876">9876</option>
+                        <option value="2376">2376</option>
+                        <option value="2199">2199</option>
+                        <option value="3301">3301</option>
+                    </select>
+                    <input type="text" name="quizz_1" placeholder="Quizz1">
+                    <input type="text" name="midterm_test" placeholder="MidTermTest">
+                    <input type="text" name="quizz_2" placeholder="Quizz2">
+                    <input type="text" name="exam" placeholder="Exam">
+                    <input type="submit" value="Submit Scores" onClick="return validateForm()">
+                </form>
+            </div>
+
+            <div class="section">
+
+                <h2>All Students Scores</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student Id</th>
+                            <th>Quizz 1</th>
+                            <th>MidTermTest</th>
+                            <th>Quizz 2</th>
+                            <th>Exam</th>
+                            <th>Total Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- TODO: Loop through the database entries to display them in this table -->
+                        {% for student in students %}
+                        <tr>
+                            <td>{{ student.ID }}</td>
+                            <td>{{ student.quizz_1 }}</td>
+                            <td>{{ student.midterm_test }}</td>
+                            <td>{{ student.quizz_2 }}</td>
+                            <td>{{ student.exam }}</td>
+                            <td>{{ student.total_score }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+
+                <h2>Result Summary</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Class Highest Score</th>
+                            <th>Class Lowest Score</th>
+                            <th>Class Average</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- TODO: Loop through the database entries to display them in this table -->
+                        {% for score in score_result %}
+                        <tr>
+                            <td>{{ score.maximum }}</td>
+                            <td>{{ score.minimum }}</td>
+                            <td>{{ score.average }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </body>
+</html>
