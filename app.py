@@ -1,7 +1,7 @@
 import os
 
 from cs50 import SQL
-from flask import Flask, flash, jsonify, redirect, render_template, request, session
+from flask import Flask, redirect, render_template, request
 
 # Configure application
 app = Flask(__name__)
@@ -37,7 +37,7 @@ def index():
         total_score = int(quizz_1) + int(midterm_test) + int(quizz_2) + int(exam)
 
         # Update data into database
-        db.execute("UPDATE students SET quizz_1=%s, midterm_test=%s, quizz_2=%s, exam=%s, total_score=%s WHERE id='%s' " % (quizz_1, midterm_test, quizz_2, exam, total_score, ID))
+        db.execute("UPDATE students SET quizz_1 = ?, midterm_test = ?, quizz_2 = ?, exam = ?, total_score = ? WHERE id = ?", quizz_1, midterm_test, quizz_2, exam, total_score, ID);
 
         # Go back to homepage
         return redirect("/")
@@ -54,5 +54,3 @@ def index():
 
         # Render students page
         return render_template("index.html", students=students, score_result=score_result)
-
-
